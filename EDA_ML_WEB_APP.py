@@ -1369,7 +1369,7 @@ elif options == "ML Models":
                 if selected_algorithm == "No Model Selected":
                     st.warning("Please Select Your Required Model!")
                 elif selected_algorithm == "Linear Regression":
-                    param_grid = {'fit_intercept': [True, False],'normalize': [True, False]}
+                    param_grid = {'fit_intercept': [True, False],'copy_X': [True, False],"positive":[True, False]}
                     search_type = st.selectbox("Select a search type", ["No search type selected!","Grid Search", "Random Search"])
                     if search_type == "No search type selected!":
                         st.warning("Please select the requiered search type!")
@@ -1390,7 +1390,7 @@ elif options == "ML Models":
                     if search_type == "No search type selected!":
                         st.warning("Please select the requiered search type!")
                     else:
-                        model = Lasso()
+                        model = Ridge()
                         results_df = hyperparameter_tuning(model, param_grid, search_type, X_train, X_test, y_train, y_test)
                 elif selected_algorithm == "Random Forest Regressor":
                     # Define the parameter grid for Random Forest Regressor
