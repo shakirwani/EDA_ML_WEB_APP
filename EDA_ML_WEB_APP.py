@@ -1112,8 +1112,10 @@ elif options == "Preprocessing & Data Manipulation":
                     processed_df[col] = le.fit_transform(processed_df[col])
 
                 elif encoding_method == "OneHot Encoding":
-                    # Apply OneHot Encoding
+                # Apply OneHot Encoding
                     encoded_df = pd.get_dummies(processed_df[col],columns=list(col),prefix=col)
+                # Convert boolean columns to integer (0/1)
+                    encoded_df = encoded_df.astype(int)
                     processed_df = pd.concat([processed_df,encoded_df],axis=1)
                     processed_df.drop([col],axis=1,inplace=True)
                 
