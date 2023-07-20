@@ -39,6 +39,15 @@ st.markdown(
     """,
     unsafe_allow_html=True)
 
+# Sidebar Section: Contact Information
+st.sidebar.subheader('Contact Information')
+
+# Add your contact details
+st.sidebar.markdown('**Name:** Amro Ewes')
+st.sidebar.markdown('**Email:** amroabousree@gmail.com')
+st.sidebar.markdown('**LinkedIn:** [linkedin.com/in/amro-ewes](https://www.linkedin.com/in/amro-ewes-663723162/)')
+st.sidebar.markdown('**Phone:** +965 6047-8385')
+st.sidebar.markdown('**GitHub:** [github.com/AmroEwes](https://github.com/AmroEwes)')
 
 #Detecting Outliers
 def extract_outliers_from_boxplot(array):
