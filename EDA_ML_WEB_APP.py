@@ -1099,8 +1099,28 @@ elif options == "Preprocessing & Data Manipulation":
         
         st.subheader("Processed Data")
         st.dataframe(processed_df)
-            
-            
+
+       # Dedecting Outliers
+        not_categorical = [cols for cols in selected_columns if processed_df[cols].dtype != "object"]
+        detect_outliers = st.checkbox("Detecting Outliers:")
+        if detect_outliers:
+            not_categorical_selected = st.multiselect("Select Features", not_categorical)
+            if not_categorical_selected:
+                for col in not_categorical_selected:
+                    st.dataframe(extract_outliers_from_boxplot(processed_df[col]))
+                    remove_outliers = st.checkbox(f"Remove Outliers for {col}:")
+                    if remove_outliers:
+                        outliers_indices, _ = extract_outliers_from_boxplot(processed_df[col])
+                        # Remove outliers from the DataFrame
+                        processed_df = processed_df.drop(index=outliers_indices)
+                        st.success(f"Outliers in {col} removed successfully!")
+                
+                st.subheader("Processed Data")
+                st.dataframe(processed_df)
+            else:
+                st.warning("Please select at least one feature for outlier detection.")
+        
+        processed_df = processed_df.copy()
         # Label the categorical columns
         st.subheader("Labeling Categorical Columns")
         categorical_cols = processed_df.select_dtypes(include="object").columns.tolist()
