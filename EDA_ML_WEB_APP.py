@@ -1141,7 +1141,7 @@ elif options == "Preprocessing & Data Manipulation":
         
         # Column selection
         st.subheader("Remove Duplicates")
-        selected_columns = st.multiselect("Select columns", processed_df.columns.tolist())
+        #selected_columns = st.multiselect("Select columns", selected_columns)
 
         if st.checkbox("Remove Duplicates"):
             if len(selected_columns)>0:
